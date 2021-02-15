@@ -1,1 +1,1 @@
-SimpleAntiLag is a project to minimize Laggs on Spigot Server!
+SimpleAntiLag is a project to minimize Laggs on Spigot Servers!
