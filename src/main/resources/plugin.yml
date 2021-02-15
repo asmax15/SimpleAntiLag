@@ -1,0 +1,10 @@
+name: SimpleAntiLag
+version: ${project.version}
+main: de.asmax.simpleantilag.main.Main
+api-version: 1.16
+authors: [ AsMax ]
+description: This plugin prevents your Server for beeing laggy.
+
+commands:
+   debug:
+   rlconfig:
