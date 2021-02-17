@@ -8,6 +8,8 @@ public class GameStateManager {
 
     public static boolean allowChunkLoading = true;
 
-    public static boolean underWorker = false;
+    public static boolean redstoneDisabled = false;
+
+    public static boolean spawningDisabled = false;
 
 }

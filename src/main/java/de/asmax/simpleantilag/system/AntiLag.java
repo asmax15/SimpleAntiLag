@@ -18,7 +18,7 @@ public class AntiLag {
 
     public static double LTPS = cfg.getDouble("Lowest TPS");
     public static double TPS = Lag.getTPS();
-    static int maxEnteties = cfg.getInt("Max Enteties");
+    static int maxEnteties = cfg.getInt("Max Entities");
 
     public static void AntiLag() {
 
@@ -60,7 +60,7 @@ public class AntiLag {
 
                     for (Chunk c : world.getLoadedChunks()) {
                         c.unload();
-                        System.out.println("Chunk unloaded by SimpleAntiLag");
+                        //System.out.println("Chunk unloaded by SimpleAntiLag");
                     }
 
                 }

@@ -7,8 +7,11 @@ import de.asmax.simpleantilag.commands.highprio.ReloadCommand;
 import de.asmax.simpleantilag.commands.highprio.StopCommand;
 import de.asmax.simpleantilag.listener.DropListener;
 import de.asmax.simpleantilag.listener.FlyListener;
+import de.asmax.simpleantilag.listener.RedstoneListener;
+import de.asmax.simpleantilag.listener.SpawnListener;
 import de.asmax.simpleantilag.system.AntiLag;
 import de.asmax.simpleantilag.system.Lag;
+import de.asmax.simpleantilag.system.LiveLag;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -35,6 +38,7 @@ public final class Main extends JavaPlugin {
         initConfig();
         initAntiLag();
         initRestart();
+        LiveLag.InitLiveLag();
 
     }
 
@@ -60,6 +64,8 @@ public final class Main extends JavaPlugin {
         pluginManager.registerEvents(new ReloadCommand(), this);
         pluginManager.registerEvents(new ForceReloadCommand(), this);
         pluginManager.registerEvents(new StopCommand(), this);
+        pluginManager.registerEvents(new RedstoneListener(), this);
+        pluginManager.registerEvents(new SpawnListener(), this);
     }
 
     private void initConfig() {
@@ -70,8 +76,11 @@ public final class Main extends JavaPlugin {
         cfg.addDefault("Unload useless Chunks", true);
         cfg.addDefault("Level Nether Name", "world_nether");
         cfg.addDefault("Default Level Name", "world");
-        cfg.addDefault("Max Enteties", 1000);
+        cfg.addDefault("Max Entities", 1000);
         cfg.addDefault("Lower TPS", 19.00);
+        cfg.addDefault("PerformanceCheck", true);
+        cfg.addDefault("CheckerIntervall", 2400);
+        cfg.addDefault("Allow LiveLag disable Redstone", false);
         cfg.addDefault("AutoRestart", true);
         cfg.addDefault("AutoRestartIntervallTICKS", 72000);
         cfg.options().copyDefaults(true);
