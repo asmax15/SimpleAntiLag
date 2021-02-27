@@ -13,7 +13,7 @@ import org.bukkit.entity.Player;
 
 import java.io.File;
 
-public class Lag implements CommandExecutor {
+public class LagCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(!(sender instanceof Player)) {

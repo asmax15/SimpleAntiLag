@@ -2,6 +2,7 @@ package de.asmax.simpleantilag.main;
 
 import de.asmax.simpleantilag.commands.CfgReloadCommand;
 import de.asmax.simpleantilag.commands.DebugCommand;
+import de.asmax.simpleantilag.commands.LagCommand;
 import de.asmax.simpleantilag.commands.highprio.ForceReloadCommand;
 import de.asmax.simpleantilag.commands.highprio.ReloadCommand;
 import de.asmax.simpleantilag.commands.highprio.StopCommand;
@@ -54,7 +55,7 @@ public final class Main extends JavaPlugin {
     private void CommandRegistration() {
         getCommand("debug").setExecutor(new DebugCommand());
         getCommand("rlconfig").setExecutor(new CfgReloadCommand());
-        getCommand("lag").setExecutor(new de.asmax.simpleantilag.commands.Lag());
+        getCommand("lag").setExecutor(new LagCommand());
     }
 
     private void ListenerRegistration() {
