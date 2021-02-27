@@ -54,6 +54,7 @@ public final class Main extends JavaPlugin {
     private void CommandRegistration() {
         getCommand("debug").setExecutor(new DebugCommand());
         getCommand("rlconfig").setExecutor(new CfgReloadCommand());
+        getCommand("lag").setExecutor(new de.asmax.simpleantilag.commands.Lag());
     }
 
     private void ListenerRegistration() {
@@ -118,15 +119,60 @@ public final class Main extends JavaPlugin {
                 @Override
                 public void run() {
 
-                    for(Player all : Bukkit.getOnlinePlayers()) {
-                        all.kickPlayer("§cDer Server wurde vom AntiLagSystem automatisch neu gestartet um eine effiziente Server Leistung zu erzielen. Bitte habe einen Moment Geduld.");
-                        Bukkit.getServer().shutdown();
-                    }
+                    restart();
 
                 }
             }, intervall);
 
         }
+    }
+
+    private void restart() {
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable() {
+
+            int countdown = 30;
+
+            @Override
+            public void run() {
+
+                switch (countdown) {
+                    case 30:
+                        Bukkit.broadcastMessage(Main.getPrefix() + "§aDer Server wird in §c30 §aSekunden automatisch neu gestartet!");
+                        break;
+                    case 15:
+                        Bukkit.broadcastMessage(Main.getPrefix() + "§aDer Server wird in §c15 §aSekunden automatisch neu gestartet!");
+                        break;
+                    case 10:
+                        Bukkit.broadcastMessage(Main.getPrefix() + "§aDer Server wird in §c10 §aSekunden automatisch neu gestartet!");
+                        break;
+                    case 5:
+                        Bukkit.broadcastMessage(Main.getPrefix() + "§aDer Server wird in §c5 §aSekunden automatisch neu gestartet!");
+                        break;
+                    case 4:
+                        Bukkit.broadcastMessage(Main.getPrefix() + "§aDer Server wird in §c4 §aSekunden automatisch neu gestartet!");
+                        break;
+                    case 3:
+                        Bukkit.broadcastMessage(Main.getPrefix() + "§aDer Server wird in §c3 §aSekunden automatisch neu gestartet!");
+                        break;
+                    case 2:
+                        Bukkit.broadcastMessage(Main.getPrefix() + "§aDer Server wird in §c2 §aSekunden automatisch neu gestartet!");
+                        break;
+                    case 1:
+                        Bukkit.broadcastMessage(Main.getPrefix() + "§aDer Server wird in §ceiner §aSekunden automatisch neu gestartet!");
+                        break;
+                    case 0:
+                        for(Player all : Bukkit.getOnlinePlayers()) {
+                            all.kickPlayer("§cDer Server wurde vom AntiLagSystem automatisch neu gestartet um eine effiziente Server Leistung zu erzielen. Bitte habe einen Moment Geduld.");
+                            Bukkit.getServer().shutdown();
+                        }
+                        return;
+                    default:
+                        break;
+                }
+                countdown--;
+
+            }
+        }, 0, 20);
     }
 
 }

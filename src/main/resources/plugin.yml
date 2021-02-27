@@ -8,3 +8,4 @@ description: This plugin prevents your Server for beeing laggy.
 commands:
    debug:
    rlconfig:
+   lag:
