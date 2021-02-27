@@ -44,7 +44,7 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onDisable() {
-
+        System.out.println(getPrefix() + "§aAntiLagSystem successfully disabled!");
     }
 
     public static Main getInstance() {
