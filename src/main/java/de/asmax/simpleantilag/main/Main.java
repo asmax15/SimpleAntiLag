@@ -2,6 +2,7 @@ package de.asmax.simpleantilag.main;
 
 import de.asmax.simpleantilag.commands.CfgReloadCommand;
 import de.asmax.simpleantilag.commands.DebugCommand;
+import de.asmax.simpleantilag.commands.GuiCommand;
 import de.asmax.simpleantilag.commands.LagCommand;
 import de.asmax.simpleantilag.commands.highprio.ForceReloadCommand;
 import de.asmax.simpleantilag.commands.highprio.ReloadCommand;
@@ -10,6 +11,7 @@ import de.asmax.simpleantilag.listener.DropListener;
 import de.asmax.simpleantilag.listener.FlyListener;
 import de.asmax.simpleantilag.listener.RedstoneListener;
 import de.asmax.simpleantilag.listener.SpawnListener;
+import de.asmax.simpleantilag.listener.inventoryhandler.GuiMainHandler;
 import de.asmax.simpleantilag.system.AntiLag;
 import de.asmax.simpleantilag.system.Lag;
 import de.asmax.simpleantilag.system.LiveLag;
@@ -56,6 +58,7 @@ public final class Main extends JavaPlugin {
         getCommand("debug").setExecutor(new DebugCommand());
         getCommand("rlconfig").setExecutor(new CfgReloadCommand());
         getCommand("lag").setExecutor(new LagCommand());
+        getCommand("gui").setExecutor(new GuiCommand());
     }
 
     private void ListenerRegistration() {
@@ -68,6 +71,7 @@ public final class Main extends JavaPlugin {
         pluginManager.registerEvents(new StopCommand(), this);
         pluginManager.registerEvents(new RedstoneListener(), this);
         pluginManager.registerEvents(new SpawnListener(), this);
+        pluginManager.registerEvents(new GuiMainHandler(), this);
     }
 
     private void initConfig() {
