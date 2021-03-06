@@ -5,9 +5,7 @@ import org.bukkit.Chunk;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Item;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 
 import java.io.File;
 
@@ -22,14 +20,15 @@ public class AntiLag {
 
     public static void AntiLag() {
 
-        if(TPS < LTPS || Bukkit.getWorld(cfg.getString("Default Level Name")).getEntities().size() > maxEnteties) {
+        if(Lag.getTPS() < LTPS || Bukkit.getWorld(cfg.getString("Default Level Name")).getEntities().size() > maxEnteties) {
             for(Player all : Bukkit.getOnlinePlayers()) {
                 if(cfg.getBoolean("Kick Player if Server runs out of TPS")) {
                     all.kickPlayer("§cDas AntiLag System hat einen Schwerwiegenden Einbruch der Server Leistung festgestellt. Der Server wird nun vom AntiLag System bereinigt. Bitte habe einen Moment Geduld.");
                     for (World w : Bukkit.getWorlds()) {
                         for (Entity e : w.getEntities()) {
-                            e.remove();
-                            //System.out.println("§f§lLAG REMOVED! by SimpleAntiLag");
+                            if(e instanceof Minecart || e instanceof Villager || e instanceof Sheep || e instanceof Chicken || e instanceof Pig || e instanceof Horse || e instanceof Donkey || e instanceof Wither || e instanceof EnderDragon) {
+                                e.remove();
+                            }
                         }
                     }
 
