@@ -6,6 +6,7 @@ import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.*;
+import org.bukkit.entity.minecart.StorageMinecart;
 
 import java.io.File;
 
@@ -26,7 +27,9 @@ public class AntiLag {
                     all.kickPlayer("§cDas AntiLag System hat einen Schwerwiegenden Einbruch der Server Leistung festgestellt. Der Server wird nun vom AntiLag System bereinigt. Bitte habe einen Moment Geduld.");
                     for (World w : Bukkit.getWorlds()) {
                         for (Entity e : w.getEntities()) {
-                            if(e instanceof Minecart || e instanceof Villager || e instanceof Sheep || e instanceof Chicken || e instanceof Pig || e instanceof Horse || e instanceof Donkey || e instanceof Wither || e instanceof EnderDragon) {
+                            if(!(e instanceof Minecart || e instanceof Villager || e instanceof Sheep || e instanceof Chicken || e instanceof Pig
+                                    || e instanceof Horse || e instanceof Donkey || e instanceof Wither || e instanceof EnderDragon || e instanceof IronGolem
+                                    || e instanceof Cow || e instanceof ArmorStand || e instanceof Player || e instanceof Llama || e instanceof WanderingTrader)) {
                                 e.remove();
                             }
                         }
