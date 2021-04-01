@@ -1,6 +1,7 @@
 package de.asmax.simpleantilag.commands.highprio;
 
 import de.asmax.simpleantilag.main.Main;
+import de.asmax.simpleantilag.utils.MessageSender;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -17,14 +18,14 @@ public class StopCommand implements Listener {
         if(msg.equalsIgnoreCase("/stop")) {
 
             event.setCancelled(true);
-            player.sendMessage(Main.getPrefix() + "Dieser Befehl wurde vom AntiLagSystem übernommen, um ein effizienteres Herunterfahren zu gewährleisten.");
-            Bukkit.broadcastMessage(Main.getPrefix() + "§4§lDer Server wird in §a§leiner Minute §4§lHeruntergefahren. Diese Aktion wude vom AntiLagSystem übernommen, um eine effizienteres Herunterfahren des Servers zu gewährleisten.");
+            player.sendMessage(MessageSender.sendStopInfoToSender());
+            Bukkit.broadcastMessage(MessageSender.sendStopInfo());
             initStop();
 
         } else if(msg.equalsIgnoreCase("/forcestop")) {
-            player.sendMessage(Main.getPrefix() + "Dieser Befehl wurde vom AntiLagSystem übernommen, um ein effizienteres Herunterfahren zu gewährleisten.");
+            player.sendMessage(MessageSender.sendStopInfoToSender());
             for(Player all : Bukkit.getOnlinePlayers()) {
-                all.kickPlayer("§cDer Server wird heruntergefahren. Dieser Befehl wurde vom AntiLagSystem übernommen, um eine effizientere Server Leistung zu gewährleisten. §4§lServer closed!");
+                all.kickPlayer(MessageSender.sendShutdownKick());
                 Main.getInstance().getServer().shutdown();
             }
         }
@@ -36,7 +37,7 @@ public class StopCommand implements Listener {
             public void run() {
 
                 for(Player all : Bukkit.getOnlinePlayers()) {
-                    all.kickPlayer("§cDer Server wird heruntergefahren. Dieser Befehl wurde vom AntiLagSystem übernommen, um eine effizientere Server Leistung zu gewährleisten. §4§lServer closed!");
+                    all.kickPlayer(MessageSender.sendShutdownKick());
                     Main.getInstance().getServer().shutdown();
                 }
 

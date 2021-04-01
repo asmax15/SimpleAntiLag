@@ -2,6 +2,7 @@ package de.asmax.simpleantilag.system;
 
 import de.asmax.simpleantilag.main.Main;
 import de.asmax.simpleantilag.utils.GameStateManager;
+import de.asmax.simpleantilag.utils.MessageSender;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -43,10 +44,10 @@ public class LiveLag implements Listener {
                                 }
                             }
 
-                            Bukkit.broadcastMessage(Main.getPrefix() + "§6Die Server Performance ist unter 18 TPS gefallen!");
-                            Bukkit.broadcastMessage(Main.getPrefix() + "§cFolgende Maßnahmen wurden ergriffen:");
-                            Bukkit.broadcastMessage(Main.getPrefix() + "§7* Items auf dem Boden wurden entfernt");
-                            Bukkit.broadcastMessage(Main.getPrefix() + "§7* Redstone zeitweise deaktiviert");
+                            Bukkit.broadcastMessage(MessageSender.liveLag18RedLine1());
+                            Bukkit.broadcastMessage(MessageSender.liveLag18RedLine2());
+                            Bukkit.broadcastMessage(MessageSender.liveLag18RedLine3());
+                            Bukkit.broadcastMessage(MessageSender.liveLag18RedLine4());
                             initAntiLive();
 
                         } else {
@@ -58,9 +59,9 @@ public class LiveLag implements Listener {
                                 }
                             }
 
-                            Bukkit.broadcastMessage(Main.getPrefix() + "§6Die Server Performance ist unter 18 TPS gefallen!");
-                            Bukkit.broadcastMessage(Main.getPrefix() + "§cFolgende Maßnahmen wurden ergriffen:");
-                            Bukkit.broadcastMessage(Main.getPrefix() + "§7* Items auf dem Boden wurden entfernt");
+                            Bukkit.broadcastMessage(MessageSender.liveLag18RedLine1());
+                            Bukkit.broadcastMessage(MessageSender.liveLag18RedLine2());
+                            Bukkit.broadcastMessage(MessageSender.liveLag18RedLine3());
                             initAntiLive();
 
                         }
@@ -79,8 +80,8 @@ public class LiveLag implements Listener {
 
                             GameStateManager.spawningDisabled = true;
 
-                            Bukkit.broadcastMessage(Main.getPrefix() + "§6Die Server Performance ist unter 16 TPS gefallen!");
-                            Bukkit.broadcastMessage(Main.getPrefix() + "§cFolgende Maßnahmen wurden ergriffen:");
+                            Bukkit.broadcastMessage(MessageSender.liveLag16RedLine1());
+                            Bukkit.broadcastMessage(MessageSender.liveLag18RedLine2());
                             Bukkit.broadcastMessage(Main.getPrefix() + "§7* Items auf dem Boden wurden entfernt");
                             Bukkit.broadcastMessage(Main.getPrefix() + "§7* Redstone zeitweise deaktiviert");
                             Bukkit.broadcastMessage(Main.getPrefix() + "§7* Mob Spawning zeitweise deaktiviert");

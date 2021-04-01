@@ -1,12 +1,12 @@
 package de.asmax.simpleantilag.system;
 
+import de.asmax.simpleantilag.utils.MessageSender;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.*;
-import org.bukkit.entity.minecart.StorageMinecart;
 
 import java.io.File;
 
@@ -24,12 +24,12 @@ public class AntiLag {
         if(Lag.getTPS() < LTPS || Bukkit.getWorld(cfg.getString("Default Level Name")).getEntities().size() > maxEnteties) {
             for(Player all : Bukkit.getOnlinePlayers()) {
                 if(cfg.getBoolean("Kick Player if Server runs out of TPS")) {
-                    all.kickPlayer("§cDas AntiLag System hat einen Schwerwiegenden Einbruch der Server Leistung festgestellt. Der Server wird nun vom AntiLag System bereinigt. Bitte habe einen Moment Geduld.");
+                    all.kickPlayer(MessageSender.kickRunOfTPS());
                     for (World w : Bukkit.getWorlds()) {
                         for (Entity e : w.getEntities()) {
                             if(!(e instanceof Minecart || e instanceof Villager || e instanceof Sheep || e instanceof Chicken || e instanceof Pig
                                     || e instanceof Horse || e instanceof Donkey || e instanceof Wither || e instanceof EnderDragon || e instanceof IronGolem
-                                    || e instanceof Cow || e instanceof ArmorStand || e instanceof Player || e instanceof Llama || e instanceof WanderingTrader)) {
+                                    || e instanceof Cow || e instanceof ArmorStand || e instanceof Player || e instanceof Llama || e instanceof WanderingTrader || e instanceof Panda || e instanceof Cat)) {
                                 e.remove();
                             }
                         }

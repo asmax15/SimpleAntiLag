@@ -1,6 +1,7 @@
 package de.asmax.simpleantilag.commands.highprio;
 
 import de.asmax.simpleantilag.main.Main;
+import de.asmax.simpleantilag.utils.MessageSender;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -17,8 +18,8 @@ public class ReloadCommand implements Listener {
         if (msg.equalsIgnoreCase("/reload") || msg.equalsIgnoreCase("/rl")) {
             event.setCancelled(true);
 
-            player.sendMessage(Main.getPrefix() + "Der reload Befehl wurde vom AntiLagSystem übernommen, um eine effizientere Server Performance zu gewährleisten.");
-            Bukkit.broadcastMessage(Main.getPrefix() + "§c§lDer Server wird vom AntiLagSystem in §2§leiner Minute §c§lneu geladen, dabei werden alle Spieler vom Server getrennt, um einen stabilen reload zu gewährleisten!");
+            player.sendMessage(MessageSender.sendReloadInfoToSender());
+            Bukkit.broadcastMessage(MessageSender.initStableReload());
             startReload();
 
         }
@@ -30,7 +31,7 @@ public class ReloadCommand implements Listener {
             public void run() {
 
                 for(Player all : Bukkit.getOnlinePlayers()) {
-                    all.kickPlayer("§cDer Server wird neu geladen. Dieser Befehl wurde vom AntiLagSystem übernommen, um eine effizientere Server Leistung zu gewährleisten. Bitte habe einen Moment Geduld.");
+                    all.kickPlayer(MessageSender.sendReloadInfo());
                     Main.getInstance().getServer().reload();
                 }
 

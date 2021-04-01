@@ -1,5 +1,6 @@
 package de.asmax.simpleantilag.commands;
 
+import de.asmax.simpleantilag.utils.MessageSender;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.Command;
@@ -30,7 +31,7 @@ public class LagCommand implements CommandExecutor {
 
         for(Player all : Bukkit.getOnlinePlayers()) {
             if(cfg.getBoolean("Kick Player if Server runs out of TPS")) {
-                all.kickPlayer("§cDas AntiLag System hat einen Schwerwiegenden Einbruch der Server Leistung festgestellt. Der Server wird nun vom AntiLag System bereinigt. Bitte habe einen Moment Geduld.");
+                all.kickPlayer(MessageSender.kickRunOfTPS());
                 for (World w : Bukkit.getWorlds()) {
                     for (Entity e : w.getEntities()) {
                         e.remove();

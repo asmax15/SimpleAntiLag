@@ -15,6 +15,8 @@ import de.asmax.simpleantilag.listener.inventoryhandler.GuiMainHandler;
 import de.asmax.simpleantilag.system.AntiLag;
 import de.asmax.simpleantilag.system.Lag;
 import de.asmax.simpleantilag.system.LiveLag;
+import de.asmax.simpleantilag.utils.GameStateManager;
+import de.asmax.simpleantilag.utils.Messages;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -35,6 +37,8 @@ public final class Main extends JavaPlugin {
 
         CommandRegistration();
         ListenerRegistration();
+
+        GameStateManager.Language = Messages.getLanguage();
 
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Lag(), 20L, 1L);
 
